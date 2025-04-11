@@ -1,10 +1,7 @@
 {
     "version": 2,
     "functions": {
-      "api/naverSearch.js": {
-        "runtime": "nodejs18.x"
-      },
-      "api/naverReviews.js": {
+      "api/**/*.js": {
         "runtime": "nodejs18.x"
       }
     }
