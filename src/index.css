@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'MyCustomFont_Regular';
+  src: url('/assets/AppleSDGothicNeo-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MyCustomFont_Bold';
+  src: url('/assets/HBIOS-SYS.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MyCustomFont_Alagard';
+  src: url('/assets/alagard.ttf') format('truetype');
+}
+
+body {
+  background-image: linear-gradient(rgb(88, 154, 253) 5% ,white 30% 90%, rgb(88, 154, 253) 97%);
+}
+
+.text-outline {
+  text-shadow: 
+      1px 1px 0 black, 
+      -1px 1px 0 black, 
+      1px -1px 0 black, 
+      -1px -1px 0 black;
+}
