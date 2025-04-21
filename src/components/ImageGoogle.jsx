@@ -1,14 +1,13 @@
-export default function ImageNaver({ details }) {
-    if (!details || !details.images) return null;
-    
+export default function ImageGoogle({ details }) {
     return(
         <div>
-            {details.images.length > 0 && (
+            {details && (
                 <div className="flex flex-wrap gap-2 mt-4">
-                    {details.images.map((image, i) => (
+                    {console.log(details.photos)}
+                    {details.photos.map((photo, i) => (
                         <div key={i} className="flex">
                             <img 
-                                src={image.link} 
+                                src={photo.url} 
                                 alt={`photo-${i}`} 
                                 className="w-24 h-auto" 
                                 loading="lazy"
