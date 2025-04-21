@@ -1,15 +1,67 @@
-export default function SearchBar({ inputQuery, setInputQuery, handleSearch }) {
+import { useState, useEffect } from "react";
+
+export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, setSubmittedQuery, handleSearch, franchisePlaces }) {
+    const [showDropdown, setShowDropdown] = useState(false);
+    const [franchiseList, setFranchiseList] = useState([]);
+
+    useEffect(() => {
+        if(inputQuery.trim() === "" || inputQuery === submittedQuery){
+            setFranchiseList([]);
+            setShowDropdown(false);
+        }
+        else{
+            const filteredList = franchisePlaces.map((place) => ({
+                id: place.id,
+                place: place.place_name,
+            }));
+            setFranchiseList(filteredList);
+            setShowDropdown(filteredList.length > 0);
+        }
+    },[inputQuery, franchisePlaces])
+
     return(
-        <form onSubmit={handleSearch} className="relative flex justify-center items-center w-full py-16">
-            <input
-                name="search"
-                type="search"
-                placeholder="식당을 검색해 보세요!😋"
-                value={inputQuery}
-                onChange={(e) => setInputQuery(e.target.value)}
-                className="font-custom text-center w-2/5 p-2 text-base border-[1.5px] border-black rounded-xl"
-            />
-            <button type="submit" className="ml-3">
+        <form onSubmit={handleSearch} className="flex justify-center items-center w-full py-16 font-customRegular">
+            <div className="relative w-2/5">
+                <input
+                    name="search"
+                    type="search"
+                    placeholder="식당을 검색해 보세요!😋"
+                    value={inputQuery}
+                    onChange={(e) => setInputQuery(e.target.value)}
+                    className="text-center w-full p-2 text-base border-[1.5px] border-black rounded-xl"
+                />
+
+                {showDropdown && inputQuery.trim().length > 0 && (
+                    <ul className="absolute w-full left-0 top-full left-1/2 transform -translate-x-1/2 z-50 bg-white border border-black overflow-hidden bg-opacity-80">
+                        {franchiseList.map((place) => (
+                            <li 
+                                key={place.id} 
+                                className="ml-2 my-2 text-sm text-gray-600 hover:text-black cursor-pointer"
+                                onClick={() => {
+                                    const selected = place.place;
+
+                                    setSubmittedQuery(selected);
+                                    setInputQuery(selected);
+                                    setFranchiseList([]);
+                                    setShowDropdown(false);
+                                }}
+                            >                   
+                                {place.place}
+                            </li>
+                        ))}
+                    </ul>
+                )}      
+            </div>
+
+            <button 
+                type="submit" 
+                className="ml-3"
+                onClick={() => {
+                    setSubmittedQuery(inputQuery);
+                    setFranchiseList([]);
+                    setShowDropdown(false);
+                }}
+            >
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>

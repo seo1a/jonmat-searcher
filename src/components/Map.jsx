@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }) {
+export default function Map({ inputQuery, submittedQuery, handleFranchisePlaces, handleSearch, onPlaceClick }) {
     const mapRef = useRef(null);
     const markerRef = useRef(null);
     const [userLocation, setUserLocation] = useState(null);
@@ -70,55 +70,73 @@ export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }
         checkKakaoLoaded();
     }, []);
 
+    // 🔸 실시간 입력어로 장소 리스트만 업데이트
     useEffect(() => {
-        if (!query || !markerRef.current || !userLocation) return;
- 
+        if (!inputQuery || !userLocation || !window.kakao) return;
+
         const { kakao } = window;
         const { latitude, longitude } = userLocation;
+        const places = new kakao.maps.services.Places();
 
-        const cleanQuery = query.trim();
-        if (cleanQuery.length === 0) {
-            console.warn("Query is empty after trimming");
-            return;
+        places.keywordSearch(inputQuery, (result, status) => {
+        if (status === kakao.maps.services.Status.OK && result.length > 0) {
+            const filteredResults = result.filter((place) =>
+                place.category_name.includes("음식") || 
+                place.category_name.includes("식당") ||
+                place.category_name.includes("카페") ||
+                place.category_name.includes("주점") ||
+                place.category_name.includes("요리") ||
+                place.category_name.includes("패스트푸드") ||
+                place.category_name.includes("한식") ||
+                place.category_name.includes("분식")
+            );
+
+            const sortedResults = filteredResults
+            .map((place) => {
+                const distance = getDistanceFromLatLonInKm(
+                latitude,
+                longitude,
+                parseFloat(place.y),
+                parseFloat(place.x)
+                );
+                //console.log(place.place_name, place.category_name);
+
+                return { ...place, distance };
+            })
+            .sort((a, b) => a.distance - b.distance);
+
+            handleFranchisePlaces(sortedResults); // ✅ 리스트만 전달 (지도는 안 바뀜)
         }
+        });
+    }, [inputQuery, userLocation]);
 
-        const { map, markers } = markerRef.current;
+    // 🔸 검색어 확정 시 마커/지도 이동
+    useEffect(() => {
+        if (!submittedQuery || !userLocation || !markerRef.current) return;
 
-        // 이전 마커 삭제
-        markers.forEach((marker) => marker.setMap(null));
-        markerRef.current.markers = [];
+        const { kakao } = window;
+        const { latitude, longitude } = userLocation;
+        const { map } = markerRef.current;
 
         const places = new kakao.maps.services.Places();
-        places.keywordSearch(cleanQuery, (result, status) => {
-            if (status === kakao.maps.services.Status.OK  && result.length > 0) {
-                // 사용자의 위치와 검색 결과 간의 거리 계산 및 정렬
-                const sortedResults = result
-                    .map((place) => {
-                        const distance = getDistanceFromLatLonInKm(
-                            latitude,
-                            longitude,
-                            parseFloat(place.y),
-                            parseFloat(place.x)
-                        );
-                        return { ...place, distance };
-                    })
-                    .sort((a, b) => a.distance - b.distance); // 거리순 정렬
+        places.keywordSearch(submittedQuery, (result, status) => {
+        if (status === kakao.maps.services.Status.OK && result.length > 0) {
+            const sortedResults = result
+            .map((place) => {
+                const distance = getDistanceFromLatLonInKm(
+                latitude,
+                longitude,
+                parseFloat(place.y),
+                parseFloat(place.x)
+                );
+                return { ...place, distance };
+            })
+            .sort((a, b) => a.distance - b.distance);
 
-                    setPlaces(sortedResults); // 정렬된 결과를 상태에 저장
-                    displayMarkers(sortedResults); // 지도 업데이트
-
-                    // 🔹 첫 번째 장소명 전달 (가장 가까운 장소)
-                    if (sortedResults.length > 0 && onPlaceSelect) {
-                        onPlaceSelect(sortedResults[0].place_name, sortedResults[0].id);
-                    }
-
-                     // 🔹 place_id 콘솔 출력
-                     console.log("📌 [Map] 첫 번째 장소 ID:", sortedResults[0].id);
-            } else {
-                alert("검색 중 오류가 발생했습니다.");
-            }
+            displayMarkers(sortedResults);
+        }
         });
-    }, [query, userLocation]);
+    }, [submittedQuery, userLocation]);
 
     const displayMarkers = (sortedResults) => {
         const { kakao } = window;
@@ -145,7 +163,7 @@ export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }
 
             kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
             kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-            console.log(`Place: ${place_name}, Latitude: ${y}, Longitude: ${x}`);
+            
         });
 
         // 지도 중심을 가장 가까운 장소로 설정
@@ -188,9 +206,8 @@ export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }
             content: `<div style="padding:5px;z-index:1;">${place_name}</div>`,
         });
         infowindow.open(map, marker);
-        console.log(`Place: ${place_name}, Latitude: ${y}, Longitude: ${x}`);
-        
-        onPlaceSelect(place.place_name, place.id);
+       
+        handleFranchisePlaces(place[0].place_name, place[0].id);
 
         if (onPlaceClick) {
             onPlaceClick(place);
