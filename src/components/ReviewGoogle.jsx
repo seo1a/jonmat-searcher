@@ -2,8 +2,8 @@ export default function ReviewGoogle({ details }) {
     return(
         <div>
             {details && (
-                <div className="max-w-2xl">
-                    <h3 className="font-customBold text-lg">구글 플레이스 평점: ⭐️ {details.rating}</h3>
+                <div className="max-w-3xl max-h-[520px] overflow-y-scroll pr-2">
+                    <h3 className="font-customBold text-lg mt-2">구글 플레이스 평점: ⭐️ {details.rating}</h3>
                     <a
                         href={details.url} 
                         target="_blank" 
@@ -17,7 +17,7 @@ export default function ReviewGoogle({ details }) {
                         {details.reviews.map((review, i) => (  
                             <li key={i} className="border-b py-4">
                                 <strong className="font-customRegular text-lg">{review.author_name} - ⭐ {review.rating}</strong>
-                                <p className="font-customRegular text-md">{review.text}</p>
+                                <p className="font-customRegular text-md mt-1">{review.text}</p>
                             </li>
                         ))}
                     </ul>

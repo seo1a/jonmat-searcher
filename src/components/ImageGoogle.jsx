@@ -2,14 +2,13 @@ export default function ImageGoogle({ details }) {
     return(
         <div>
             {details && (
-                <div className="flex flex-wrap gap-2 mt-4">
-                    {console.log(details.photos)}
+                <div className="flex flex-nowrap gap-2 overflow-x-auto">
                     {details.photos.map((photo, i) => (
-                        <div key={i} className="flex">
+                        <div key={i} className="flex-shrink-0">
                             <img 
                                 src={photo.url} 
                                 alt={`photo-${i}`} 
-                                className="w-24 h-auto" 
+                                className="h-48 object-contain" 
                                 loading="lazy"
                             />
                         </div>

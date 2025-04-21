@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-
 export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }) {
     const mapRef = useRef(null);
     const markerRef = useRef(null);
@@ -125,6 +124,10 @@ export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }
         const { kakao } = window;
         const { map, markers } = markerRef.current;
 
+        // 이전 마커 제거
+        markers.forEach((marker) => marker.setMap(null));
+        markerRef.current.markers = [];
+
         sortedResults.forEach((place) => {
             const { y, x, place_name } = place;
             const position = new kakao.maps.LatLng(y, x);
@@ -150,6 +153,15 @@ export default function Map({ query, onPlaceSelect, handleSearch, onPlaceClick }
         const nearestPosition = new kakao.maps.LatLng(nearestPlace.y, nearestPlace.x);
         map.setCenter(nearestPosition);
         
+        // 🔄 기존 단일 marker 제거하고 새로 찍기
+        if (markerRef.current.marker) {
+            markerRef.current.marker.setMap(null);
+        }
+
+        markerRef.current.marker = new kakao.maps.Marker({
+            position: nearestPosition,
+            map,
+        });
     };
 
     const handlePlaceClick = (place) => {
