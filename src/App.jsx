@@ -61,7 +61,7 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header setInputQuery={setInputQuery} setSubmittedQuery={setSubmittedQuery} />
       <SearchBar inputQuery={inputQuery} setInputQuery={setInputQuery} submittedQuery={submittedQuery} setSubmittedQuery={setSubmittedQuery} handleSearch={handleSearch} franchisePlaces={franchisePlaces} />
       <Home inputQuery={debouncedQuery} submittedQuery={submittedQuery} naverDetails={naverDetails} googleDetails={googleDetails} handleFranchisePlaces={handleFranchisePlaces} />
     </>

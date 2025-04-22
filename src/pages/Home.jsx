@@ -33,16 +33,16 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
                         <div className="mt-12">
-                            {selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
-                            {selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
-                            {selectedPlatform === "Kakao" && <ReviewKakao />}
+                            {submittedQuery !== "" && selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
+                            {submittedQuery !== "" && selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
+                            {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao />}
                         </div>
                     </div>
                 </div>
             </div>
             <div className="mt-24 ml-52 mr-52 mb-48">
-                {selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}
-                {selectedPlatform === "Google" && <ImageGoogle details={googleDetails} />}
+                {submittedQuery !== "" && selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}
+                {submittedQuery !== "" && selectedPlatform === "Google" && <ImageGoogle details={googleDetails} />}
             </div>
         </>
     );
