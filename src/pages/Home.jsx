@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Map from "../components/Map"
 import Button from "../components/UI/Button";
-import ReviewNaver from "../components/reviewNaver";
-import ReviewGoogle from "../components/reviewGoogle";
-import ReviewKakao from "../components/reviewKakao";
+import ReviewNaver from "../components/ReviewNaver";
+import ReviewGoogle from "../components/ReviewGoogle";
+import ReviewKakao from "../components/ReviewKakao";
 import ImageNaver from "../components/ImageNaver";
 import ImageGoogle from "../components/ImageGoogle";
 import ImageKakao from "../components/ImageKakao";
