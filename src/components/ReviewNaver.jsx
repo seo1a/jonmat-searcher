@@ -12,19 +12,19 @@ export default function ReviewNaver({ details }) {
                 <div className="max-w-3xl max-h-[600px] overflow-y-scroll pr-2">
                     <ul className="space-y-3">
                         {details.blog.map((post, i) => (
-                            <li key={i} className="border-b py-4">
+                            <li key={i} className="font-noto_sans border-b py-4">
                                 <a 
                                     href={post.link} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="font-customRegular font-bold text-lg hover:underline"
+                                    className="font-bold text-lg hover:underline"
                                 >
                                     📍 {post.title.replace(/<b>/g, "").replace(/<\/b>/g, "")}
                                 </a>
-                                <p className="font-customRegular text-md mt-1">
+                                <p className="text-md mt-1">
                                     {post.description.replace(/<b>/g, "").replace(/<\/b>/g, "")}
                                 </p>
-                                <p className="font-customRegular text-gray-500 text-xs mt-1">
+                                <p className="text-gray-500 text-xs mt-1">
                                     🕒 {formatPostDate(post.postdate)}
                                 </p>
                             </li>

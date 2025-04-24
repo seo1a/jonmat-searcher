@@ -43,10 +43,10 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
 
                     <ul className="mt-6 space-y-3">
                         {reviews.map((review, i) => (  
-                            <li key={i} className="border-b py-4">
-                                <strong className="font-customRegular text-lg">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</strong>
-                                <p className="font-customRegular text-md mt-1">{review.contents}</p>
-                                <p className="font-customRegular text-gray-500 text-xs mt-1">
+                            <li key={i} className="border-b py-4 font-noto_sans">
+                                <p className="font-bold text-lg">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
+                                <p className="text-md mt-1">{review.contents}</p>
+                                <p className="text-gray-500 text-xs mt-1">
                                     🕒{review.date}
                                 </p>
                             </li>

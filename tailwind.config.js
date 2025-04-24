@@ -9,6 +9,8 @@ export default {
         customRegular: ['MyCustomFont_Regular', 'sans-serif'], 
         customBold: ['MyCustomFont_Bold', 'sans-serif'], 
         alagard: ['MyCustomFont_Alagard', 'sans-serif'],
+        pretendard: ['pretendard', 'sans-serif'],
+        noto_sans: ['noto-sans', 'sans-serif'],
       },
       backgroundImage: {
         buttonNaver: "url('/assets/naver_button.png')",

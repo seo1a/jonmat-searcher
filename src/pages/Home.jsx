@@ -27,7 +27,7 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                     </div>
 
                     <div className="flex flex-col ml-20">
-                        <div className="flex space-x-8 ml-8">
+                        <div className="flex space-x-8 ml-14">
                             <Button platform="Naver" setSelectedPlatform={setSelectedPlatform} className="bg-buttonNaver"/>
                             <Button platform="Google" setSelectedPlatform={setSelectedPlatform} className="bg-buttonGoogle"/>
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
@@ -40,7 +40,10 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                     </div>
                 </div>
             </div>
-            <div className="mt-24 ml-52 mr-52 mb-48">
+            <div className="mt-20 ml-52 mr-52 mb-40">
+                <h1 className="font-customBold mb-8 text-2xl text-left">
+                    📷 사진 구경하기 ( ◜⤙◝ )🍴
+                </h1>
                 {submittedQuery !== "" && selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}
                 {submittedQuery !== "" && selectedPlatform === "Google" && <ImageGoogle details={googleDetails} />}
                 {submittedQuery !== "" && selectedPlatform === "Kakao" && <ImageKakao details={kakaoDetails}/>}

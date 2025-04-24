@@ -15,9 +15,9 @@ export default function ReviewGoogle({ details }) {
 
                     <ul className="mt-6 space-y-3">
                         {details.reviews.map((review, i) => (  
-                            <li key={i} className="border-b py-4">
-                                <strong className="font-customRegular text-lg">{review.author_name} - ⭐ {review.rating}</strong>
-                                <p className="font-customRegular text-md mt-1">{review.text}</p>
+                            <li key={i} className="font-noto_sans border-b py-4">
+                                <p className="font-bold text-lg">{review.author_name} - ⭐ {review.rating}</p>
+                                <p className="text-md mt-1">{review.text}</p>
                             </li>
                         ))}
                     </ul>

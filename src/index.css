@@ -17,6 +17,11 @@
   src: url('/assets/alagard.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'noto-sans';
+  src: url('/assets/NotoSansKR-Regular.ttf') format('truetype');
+}
+
 body {
   background-image: linear-gradient(rgb(88, 154, 253) 5% ,white 30% 90%, rgb(88, 154, 253) 97%);
 }

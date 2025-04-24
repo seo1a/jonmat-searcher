@@ -20,7 +20,7 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
     },[inputQuery, franchisePlaces])
 
     return(
-        <form onSubmit={handleSearch} className="flex justify-center items-center w-full py-16 font-customRegular">
+        <form onSubmit={handleSearch} className="flex justify-center items-center w-full py-16 font-noto_sans">
             <div className="relative w-2/5">
                 <input
                     name="search"
