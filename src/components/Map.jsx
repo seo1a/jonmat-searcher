@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-export default function Map({ inputQuery, submittedQuery, handleFranchisePlaces, handleSearch, onPlaceClick }) {
+export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handleFranchisePlaces, handleSearch, onPlaceClick }) {
     const mapRef = useRef(null);
     const markerRef = useRef(null);
     const [userLocation, setUserLocation] = useState(null);
@@ -134,6 +134,9 @@ export default function Map({ inputQuery, submittedQuery, handleFranchisePlaces,
             .sort((a, b) => a.distance - b.distance);
 
             displayMarkers(sortedResults);
+
+            const nearestPlace = sortedResults[0];
+            setKakaoPlaceId(nearestPlace.id);
         }
         });
     }, [submittedQuery, userLocation]);

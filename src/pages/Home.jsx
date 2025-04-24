@@ -6,13 +6,13 @@ import ReviewGoogle from "../components/reviewGoogle";
 import ReviewKakao from "../components/reviewKakao";
 import ImageNaver from "../components/ImageNaver";
 import ImageGoogle from "../components/ImageGoogle";
+import ImageKakao from "../components/ImageKakao";
 
-export default function Home({ inputQuery, submittedQuery, naverDetails, googleDetails, handleFranchisePlaces }) {
+export default function Home({ inputQuery, submittedQuery, naverDetails, googleDetails, kakaoDetails, kakaoPlaceId, setKakaoPlaceId, handleFranchisePlaces }) {
     const [selectedPlatform, setSelectedPlatform] = useState("Naver");
 
-    //test, 수정필요!!!!!
     const handlePlaceClick = (place) => {
-    setSelectedPlace(place); // 사용자가 선택한 장소 정보 저장
+        setSelectedPlace(place); // 사용자가 선택한 장소 정보 저장
     };
 
     return(
@@ -23,7 +23,7 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                         <h1 className="font-customBold mb-12 text-2xl text-left">
                             #{submittedQuery}의 리뷰를 보여 드릴게요! ฅ₍ˆ- ̫-ˆ₎‧˚🐾
                         </h1>
-                        <Map inputQuery={inputQuery} submittedQuery={submittedQuery} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick}/>
+                        <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick}/>
                     </div>
 
                     <div className="flex flex-col ml-20">
@@ -35,7 +35,7 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                         <div className="mt-12">
                             {submittedQuery !== "" && selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
                             {submittedQuery !== "" && selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
-                            {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao />}
+                            {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} />}
                         </div>
                     </div>
                 </div>
@@ -43,6 +43,7 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
             <div className="mt-24 ml-52 mr-52 mb-48">
                 {submittedQuery !== "" && selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}
                 {submittedQuery !== "" && selectedPlatform === "Google" && <ImageGoogle details={googleDetails} />}
+                {submittedQuery !== "" && selectedPlatform === "Kakao" && <ImageKakao details={kakaoDetails}/>}
             </div>
         </>
     );

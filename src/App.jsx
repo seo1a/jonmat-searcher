@@ -11,25 +11,16 @@ export default function App() {
   const [debouncedQuery] = useDebounce(inputQuery, 300);
   const [naverDetails, setNaverDetails] = useState(null); // 네이버 리뷰 객체
   const [googleDetails, setGoogleDetails] = useState(null); // 구글 리뷰 객체
+  const [kakaoPlaceId, setKakaoPlaceId] = useState(null); // 카카오맵에서 가져온 카카오 placeID
+  const [kakaoDetails, setKakaoDetails] = useState(null);
   const [franchisePlaces, setFranchisePlaces] = useState([]); // 가맹점
 
   useEffect(() => {
     const fetchSearchResults = async () => {
-      if (!submittedQuery.trim()) return;
+      if (!submittedQuery.trim() || !kakaoPlaceId) return;
 
       try {
-        // 구글 place ID, 리뷰, 사진 가져오기
-        const searchRes = await axios.get(`/api/getPlaceId_google?query=${submittedQuery}`);
-        const { placeId, name } = searchRes.data;
-        const googleDetailsRes = await axios.get(`/api/getReview_google?placeId=${placeId}`);
-
-        setGoogleDetails({
-          ...googleDetailsRes.data,
-          placeId,
-          name,
-        });
-
-        // 네이버 블로그 리뷰 가져오기
+        // 네이버 블로그 포스트, 사진 가져오기
         const naverRes = await axios.get(`/api/getReview_naver?query=${submittedQuery}`);
 
         setNaverDetails({
@@ -37,6 +28,26 @@ export default function App() {
           images: naverRes.data.imageItems,
         });
 
+        // 구글 place ID, 리뷰, 사진 가져오기
+        const searchRes = await axios.get(`/api/getPlaceId_google?query=${submittedQuery}`);
+        const { placeId, name } = searchRes.data;
+        const googleRes = await axios.get(`/api/getReview_google?placeId=${placeId}`);
+
+        setGoogleDetails({
+          ...googleRes.data,
+          placeId,
+          name,
+        });
+
+        // 카카오 리뷰, 사진 가져오기
+        const kakaoRes = await axios.get(`/api/getReview_kakao?placeId=${kakaoPlaceId}`);
+
+        setKakaoDetails({
+          status: kakaoRes.data.status,
+          totalRating: kakaoRes.data.totalRating,
+          reviews: kakaoRes.data.reviews,
+          images: kakaoRes.data.images
+        });
       } catch (error) {
         console.error(error);
         alert('검색에 실패했습니다.');
@@ -44,7 +55,7 @@ export default function App() {
     };
 
     fetchSearchResults();
-  }, [submittedQuery]);
+  }, [submittedQuery, kakaoPlaceId]);
 
   /* 검색 */
   const handleSearch = (e) => {
@@ -63,7 +74,7 @@ export default function App() {
     <>
       <Header setInputQuery={setInputQuery} setSubmittedQuery={setSubmittedQuery} />
       <SearchBar inputQuery={inputQuery} setInputQuery={setInputQuery} submittedQuery={submittedQuery} setSubmittedQuery={setSubmittedQuery} handleSearch={handleSearch} franchisePlaces={franchisePlaces} />
-      <Home inputQuery={debouncedQuery} submittedQuery={submittedQuery} naverDetails={naverDetails} googleDetails={googleDetails} handleFranchisePlaces={handleFranchisePlaces} />
+      <Home inputQuery={debouncedQuery} submittedQuery={submittedQuery} naverDetails={naverDetails} googleDetails={googleDetails} kakaoDetails={kakaoDetails} kakaoPlaceId={kakaoPlaceId} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} />
     </>
   )
 }
