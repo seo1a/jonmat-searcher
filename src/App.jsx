@@ -12,12 +12,15 @@ export default function App() {
   const [naverDetails, setNaverDetails] = useState(null); // 네이버 리뷰 객체
   const [googleDetails, setGoogleDetails] = useState(null); // 구글 리뷰 객체
   const [kakaoPlaceId, setKakaoPlaceId] = useState(null); // 카카오맵에서 가져온 카카오 placeID
-  const [kakaoDetails, setKakaoDetails] = useState(null);
+  const [kakaoDetails, setKakaoDetails] = useState(null); // 카카오 리뷰 객체
   const [franchisePlaces, setFranchisePlaces] = useState([]); // 가맹점
+  const [isLoading, setIsLoading] = useState(false);  // 데이터 로딩 상태 표시
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (!submittedQuery.trim() || !kakaoPlaceId) return;
+
+      setIsLoading(true); // 상태: 데이터 로딩 중
 
       try {
         // 네이버 블로그 포스트, 사진 가져오기
@@ -51,6 +54,8 @@ export default function App() {
       } catch (error) {
         console.error(error);
         alert('검색에 실패했습니다.');
+      } finally {
+        setIsLoading(false);  // 상태: 데이터 로딩 완료
       }
     };
 
@@ -74,7 +79,10 @@ export default function App() {
     <>
       <Header setInputQuery={setInputQuery} setSubmittedQuery={setSubmittedQuery} />
       <SearchBar inputQuery={inputQuery} setInputQuery={setInputQuery} submittedQuery={submittedQuery} setSubmittedQuery={setSubmittedQuery} handleSearch={handleSearch} franchisePlaces={franchisePlaces} />
-      <Home inputQuery={debouncedQuery} submittedQuery={submittedQuery} naverDetails={naverDetails} googleDetails={googleDetails} kakaoDetails={kakaoDetails} kakaoPlaceId={kakaoPlaceId} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} />
+      <Home inputQuery={debouncedQuery} submittedQuery={submittedQuery} 
+            naverDetails={naverDetails} googleDetails={googleDetails} kakaoDetails={kakaoDetails} 
+            kakaoPlaceId={kakaoPlaceId} setKakaoPlaceId={setKakaoPlaceId} 
+            handleFranchisePlaces={handleFranchisePlaces} isLoading={isLoading}/>
     </>
   )
 }

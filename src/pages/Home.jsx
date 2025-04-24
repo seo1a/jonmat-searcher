@@ -8,7 +8,10 @@ import ImageNaver from "../components/ImageNaver";
 import ImageGoogle from "../components/ImageGoogle";
 import ImageKakao from "../components/ImageKakao";
 
-export default function Home({ inputQuery, submittedQuery, naverDetails, googleDetails, kakaoDetails, kakaoPlaceId, setKakaoPlaceId, handleFranchisePlaces }) {
+export default function Home({ 
+    inputQuery, submittedQuery, naverDetails, googleDetails, kakaoDetails, 
+    kakaoPlaceId, setKakaoPlaceId, handleFranchisePlaces, isLoading 
+}) {
     const [selectedPlatform, setSelectedPlatform] = useState("Naver");
 
     const handlePlaceClick = (place) => {
@@ -26,16 +29,26 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                         <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick}/>
                     </div>
 
-                    <div className="flex flex-col ml-9 mr-9 lg:ml-20 lg:mr-0 items-center lg:items-start">
-                        <div className="flex space-x-5 lg:space-x-8 lg:ml-12">
+                    <div className="flex flex-col ml-9 mr-9 lg:ml-20 lg:mr-0 items-center md:items-start lg:w-full lg:max-w-[720px]">
+                        <div className="flex space-x-4 lg:space-x-8 lg:ml-12 lg:mr-0">
                             <Button platform="Naver" setSelectedPlatform={setSelectedPlatform} className="bg-buttonNaver"/>
                             <Button platform="Google" setSelectedPlatform={setSelectedPlatform} className="bg-buttonGoogle"/>
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
-                        <div className="mt-8 lg:mt-12">
-                            {submittedQuery !== "" && selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
-                            {submittedQuery !== "" && selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
-                            {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} />}
+                        <div className="mt-8 lg:mt-12 lg:w-full">
+                            {isLoading ? (
+                                <div className="min-h-[300px] flex items-center justify-center">
+                                    <div className="font-customBold text-gray-500 text-center text-md lg:text-xl animate-pulse">
+                                        🔄 리뷰를 불러오는 중입니다... 🏃‍♀️🏃‍♂️💨
+                                    </div>
+                                </div>
+                            ) : (
+                                <>
+                                    {submittedQuery !== "" && selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
+                                    {submittedQuery !== "" && selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
+                                    {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} />}
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -44,9 +57,17 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                 <h1 className="font-customBold mb-8 text-md lg:text-2xl text-center lg:text-left break-words">
                     📷 사진 구경하기 ( ◜⤙◝ )🍴
                 </h1>
-                {submittedQuery !== "" && selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}
-                {submittedQuery !== "" && selectedPlatform === "Google" && <ImageGoogle details={googleDetails} />}
-                {submittedQuery !== "" && selectedPlatform === "Kakao" && <ImageKakao details={kakaoDetails}/>}
+                {isLoading ? (
+                    <div className="font-customBold text-gray-500 text-center text-md lg:text-xl animate-pulse">
+                        🔄 사진을 불러오는 중입니다... 🤸‍♂️🤸‍♀️💨
+                    </div>
+                ) : (
+                    <>
+                        {submittedQuery !== "" && selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}
+                        {submittedQuery !== "" && selectedPlatform === "Google" && <ImageGoogle details={googleDetails} />}
+                        {submittedQuery !== "" && selectedPlatform === "Kakao" && <ImageKakao details={kakaoDetails}/>}
+                    </>
+                )}
             </div>
         </>
     );
