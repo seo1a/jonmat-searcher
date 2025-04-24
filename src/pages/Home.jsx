@@ -21,7 +21,7 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                 <div className="flex flex-col lg:flex-row mt-4 lg:mt-12 px-4 lg:px-52">
                     <div className="flex flex-col w-full lg:w-1/2 items-center lg:items-start">
                         <h1 className="font-customBold mb-6 lg:mb-12 text-md lg:text-2xl text-center lg:text-left break-words items-center lg:items-start">
-                            #{submittedQuery}의 리뷰를 보여 드릴게요! ฅ₍ˆ- ̫-ˆ₎‧˚🐾
+                            #{submittedQuery}의 <span className="block lg:hidden"></span>리뷰를 보여 드릴게요! ฅ₍ˆ- ̫-ˆ₎‧˚🐾
                         </h1>
                         <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick}/>
                     </div>

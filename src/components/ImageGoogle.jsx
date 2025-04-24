@@ -8,7 +8,7 @@ export default function ImageGoogle({ details }) {
                             <img 
                                 src={photo.url} 
                                 alt={`photo-${i}`} 
-                                className="h-60 object-contain border border-black rounded-xl" 
+                                className="h-48 lg:h-60 object-contain border border-black rounded-xl" 
                                 loading="lazy"
                             />
                         </div>

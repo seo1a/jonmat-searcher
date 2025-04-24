@@ -31,12 +31,12 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
         <div>
             {reviews && (
                 <div className="max-w-3xl max-h-[600px] overflow-y-scroll pr-2">
-                    <h3 className="font-customBold text-lg mt-2">카카오맵 리뷰 평점: ⭐️ {totalRating}</h3>
+                    <h3 className="font-customBold text-md lg:text-lg mt-2">카카오맵 리뷰 평점: ⭐️ {totalRating}</h3>
                     <a
                         href={`https://place.map.kakao.com/${kakaoPlaceId}`} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="font-customRegular text-md hover:underline"
+                        className="font-customRegular text-sm lg:text-md hover:underline"
                     >
                         📎 카카오맵 페이지로 이동하기 🚶‍♀️🚶‍♂️
                     </a>
@@ -44,8 +44,8 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
                     <ul className="mt-6 space-y-3">
                         {reviews.map((review, i) => (  
                             <li key={i} className="border-b py-4 font-noto_sans">
-                                <p className="font-bold text-lg">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
-                                <p className="text-md mt-1">{review.contents}</p>
+                                <p className="font-bold text-md lg:text-lg">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
+                                <p className="text-sm lg:text-md mt-1">{review.contents}</p>
                                 <p className="text-gray-500 text-xs mt-1">
                                     🕒{review.date}
                                 </p>

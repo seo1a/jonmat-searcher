@@ -1,4 +1,4 @@
-export default function ImageKakao({ details }) {
+export default function ImageKakao({ details }) {  
     if (!details || !details.images) return null;
     
     return(
@@ -10,7 +10,7 @@ export default function ImageKakao({ details }) {
                             <img 
                                 src={image.link} 
                                 alt={`photo-${i}`} 
-                                className="h-60 object-contain border border-black rounded-xl" 
+                                className="h-48 lg:h-60 object-contain border border-black rounded-xl" 
                                 loading="lazy"
                             />
                         </div>
