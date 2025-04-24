@@ -20,15 +20,15 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
     },[inputQuery, franchisePlaces])
 
     return(
-        <form onSubmit={handleSearch} className="flex justify-center items-center w-full py-16 font-noto_sans">
-            <div className="relative w-2/5">
+        <form onSubmit={handleSearch} className="flex justify-center items-center w-full pt-10 lg:pt-16 pb-16 font-noto_sans">
+            <div className="relative w-2/3 lg:w-2/5">
                 <input
                     name="search"
                     type="search"
                     placeholder="식당을 검색해 보세요!😋"
                     value={inputQuery}
                     onChange={(e) => setInputQuery(e.target.value)}
-                    className="text-center w-full p-2 text-base border-[1.5px] border-black rounded-xl"
+                    className="text-center w-full h-10 lg:h-auto p-2 text-base border-[1.5px] border-black rounded-xl lg:text-md"
                 />
 
                 {showDropdown && inputQuery.trim().length > 0 && (

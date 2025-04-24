@@ -18,21 +18,21 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
     return(
         <>
             <div>
-                <div className="flex mt-12 ml-52 mr-52">
-                    <div className="flex flex-col">
-                        <h1 className="font-customBold mb-12 text-2xl text-left">
+                <div className="flex flex-col lg:flex-row mt-4 lg:mt-12 px-4 lg:px-52">
+                    <div className="flex flex-col w-full lg:w-1/2 items-center lg:items-start">
+                        <h1 className="font-customBold mb-6 lg:mb-12 text-md lg:text-2xl text-center lg:text-left break-words items-center lg:items-start">
                             #{submittedQuery}의 리뷰를 보여 드릴게요! ฅ₍ˆ- ̫-ˆ₎‧˚🐾
                         </h1>
                         <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick}/>
                     </div>
 
-                    <div className="flex flex-col ml-20">
-                        <div className="flex space-x-8 ml-14">
+                    <div className="flex flex-col ml-9 mr-9 lg:ml-20 lg:mr-0 items-center lg:items-start">
+                        <div className="flex space-x-5 lg:space-x-8 lg:ml-12">
                             <Button platform="Naver" setSelectedPlatform={setSelectedPlatform} className="bg-buttonNaver"/>
                             <Button platform="Google" setSelectedPlatform={setSelectedPlatform} className="bg-buttonGoogle"/>
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
-                        <div className="mt-12">
+                        <div className="mt-8 lg:mt-12">
                             {submittedQuery !== "" && selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
                             {submittedQuery !== "" && selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
                             {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} />}
@@ -40,8 +40,8 @@ export default function Home({ inputQuery, submittedQuery, naverDetails, googleD
                     </div>
                 </div>
             </div>
-            <div className="mt-20 ml-52 mr-52 mb-40">
-                <h1 className="font-customBold mb-8 text-2xl text-left">
+            <div className="flex flex-col mt-20 mx-9 lg:ml-52 lg:mr-52 mb-24 lg:mb-40">
+                <h1 className="font-customBold mb-8 text-md lg:text-2xl text-center lg:text-left break-words">
                     📷 사진 구경하기 ( ◜⤙◝ )🍴
                 </h1>
                 {submittedQuery !== "" && selectedPlatform === "Naver" && <ImageNaver details={naverDetails} />}

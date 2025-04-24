@@ -234,10 +234,9 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
 
     const deg2rad = (deg) => deg * (Math.PI / 180);
 
-    //195행에 <MapSearchResult places={places} onPlaceClick={handlePlaceClick} />
     return (
         <div>
-            <div ref={mapRef} style={{ width: '650px', height: '650px' }} />
+            <div ref={mapRef} className="w-[350px] md:w-[600px] lg:w-[650px] h-[350px] md:h-[600px] lg:h-[650px]" />
             
         </div>
     );
