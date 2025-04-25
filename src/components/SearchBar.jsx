@@ -63,7 +63,7 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     <ul className="absolute w-full left-0 top-full left-1/2 
                     mt-1 lg:mt-2
                     transform -translate-x-1/2 z-50 
-                    border border-black rounded-xl
+                    border border-black rounded-xl bg-white
                     overflow-hidden bg-opacity-80">
                         {franchiseList.map((place) => (
                             <li 
