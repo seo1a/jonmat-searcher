@@ -23,34 +23,27 @@ export default function App() {
       setIsLoading(true); // 상태: 데이터 로딩 중
 
       try {
-        // 네이버 블로그 포스트, 사진 가져오기
-        const naverRes = await axios.get(`/api/getReview_naver?query=${submittedQuery}`);
+        // 네이버, 구글, 카카오 api 요청
+        const naverReq = axios.get(`/api/getReview_naver?query=${submittedQuery}`);
+        const googleReq = axios.get(`/api/getReview_google?query=${submittedQuery}`);
+        const kakaoReq = axios.get(`/api/getReview_kakao?placeId=${kakaoPlaceId}`);
 
-        setNaverDetails({
-          blog: naverRes.data.blogItems,
-          images: naverRes.data.imageItems,
-        });
+        naverReq.then((res) => setNaverDetails({
+          blog: res.data.blogItems,
+          images: res.data.imageItems,
+        }));
 
-        // 구글 place ID, 리뷰, 사진 가져오기
-        const searchRes = await axios.get(`/api/getPlaceId_google?query=${submittedQuery}`);
-        const { placeId, name } = searchRes.data;
-        const googleRes = await axios.get(`/api/getReview_google?placeId=${placeId}`);
-
-        setGoogleDetails({
-          ...googleRes.data,
-          placeId,
-          name,
-        });
-
-        // 카카오 리뷰, 사진 가져오기
-        const kakaoRes = await axios.get(`/api/getReview_kakao?placeId=${kakaoPlaceId}`);
-
-        setKakaoDetails({
-          status: kakaoRes.data.status,
-          totalRating: kakaoRes.data.totalRating,
-          reviews: kakaoRes.data.reviews,
-          images: kakaoRes.data.images
-        });
+        googleReq.then((res) => setGoogleDetails({
+            ...res.data
+        }));
+        
+        kakaoReq.then((res) => setKakaoDetails({
+          status: res.data.status,
+          totalRating: res.data.totalRating,
+          reviews: res.data.reviews,
+          images: res.data.images
+        }))
+        
       } catch (error) {
         console.error(error);
         alert('검색에 실패했습니다.');
