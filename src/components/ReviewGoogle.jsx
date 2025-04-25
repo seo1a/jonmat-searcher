@@ -3,7 +3,7 @@ export default function ReviewGoogle({ details }) {
         <div>
             {details && (
                 <div className="max-w-3xl max-h-[700px] lg:max-h-[600px] 
-                mx-4 lg:mx-0 overflow-y-scroll pr-2">
+                mx-3 lg:mx-0 overflow-y-scroll pr-2">
                     <h3 className="font-customBold text-base lg:text-lg mt-2">구글 플레이스 평점: ⭐️ {details.rating}</h3>
                     <a
                         href={details.url} 
