@@ -14,13 +14,18 @@ export default function App() {
   const [kakaoPlaceId, setKakaoPlaceId] = useState(null); // 카카오맵에서 가져온 카카오 placeID
   const [kakaoDetails, setKakaoDetails] = useState(null); // 카카오 리뷰 객체
   const [franchisePlaces, setFranchisePlaces] = useState([]); // 가맹점
-  const [isLoading, setIsLoading] = useState(false);  // 데이터 로딩 상태 표시
+  const [naverLoading, setNaverLoading] = useState(false);  // 데이터 로딩 상태 표시
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [kakaoLoading, setKakaoLoading] = useState(false);
 
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (!submittedQuery.trim() || !kakaoPlaceId) return;
 
-      setIsLoading(true); // 상태: 데이터 로딩 중
+      // 상태: 데이터 로딩 중
+      setNaverLoading(true);
+      setGoogleLoading(true);
+      setKakaoLoading(true);
 
       try {
         // 네이버, 구글, 카카오 api 요청
@@ -31,24 +36,22 @@ export default function App() {
         naverReq.then((res) => setNaverDetails({
           blog: res.data.blogItems,
           images: res.data.imageItems,
-        }));
+        })).finally(() => setNaverLoading(false));
 
         googleReq.then((res) => setGoogleDetails({
             ...res.data
-        }));
+        })).finally(() => setGoogleLoading(false));
         
         kakaoReq.then((res) => setKakaoDetails({
           status: res.data.status,
           totalRating: res.data.totalRating,
           reviews: res.data.reviews,
           images: res.data.images
-        }))
+        })).finally(() => setKakaoLoading(false));
         
       } catch (error) {
         console.error(error);
         alert('검색에 실패했습니다.');
-      } finally {
-        setIsLoading(false);  // 상태: 데이터 로딩 완료
       }
     };
 
@@ -75,7 +78,8 @@ export default function App() {
       <Home inputQuery={debouncedQuery} submittedQuery={submittedQuery} 
             naverDetails={naverDetails} googleDetails={googleDetails} kakaoDetails={kakaoDetails} 
             kakaoPlaceId={kakaoPlaceId} setKakaoPlaceId={setKakaoPlaceId} 
-            handleFranchisePlaces={handleFranchisePlaces} isLoading={isLoading}/>
+            handleFranchisePlaces={handleFranchisePlaces} 
+            naverLoading={naverLoading} googleLoading={googleLoading} kakaoLoading={kakaoLoading}/>
     </>
   )
 }

@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import clickIcon from "../../public/assets/click-icon.png"
 
 export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, setSubmittedQuery, handleSearch, franchisePlaces }) {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -29,7 +28,7 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     placeholder="식당을 검색해 보세요!😋"
                     value={inputQuery}
                     onChange={(e) => setInputQuery(e.target.value)}
-                    className="text-center w-full h-10 lg:h-auto p-2 text-base border lg:border border-black rounded-xl lg:text-md"
+                    className="text-center w-full h-10 p-2 text-sm lg:text-md border lg:border-[1.5px] border-black rounded-xl bg-white"
                 />
                 <button 
                     type="submit" 
@@ -40,7 +39,9 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     }}
                     className="absolute right-2 top-1/2 transform -translate-y-1/2 px-1 py-1"
                 >
-                    <img src={clickIcon} alt="검색" className="w-6 h-6 lg:w-7 lg:h-7" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
                 </button>   
 
                 {showDropdown && inputQuery.trim().length > 0 && (

@@ -8,9 +8,20 @@ import ImageNaver from "../components/ImageNaver";
 import ImageGoogle from "../components/ImageGoogle";
 import ImageKakao from "../components/ImageKakao";
 
+export function loading(data) {
+    return(
+        <div className="min-h-[300px] flex items-center justify-center">
+            <div className="font-customBold text-gray-500 text-md lg:text-xl w-full text-center animate-pulse">
+                🔄 {data} 불러오는 중입니다... 🏃‍♀️🏃‍♂️💨
+            </div>
+        </div>
+    )
+}
+
 export default function Home({ 
     inputQuery, submittedQuery, naverDetails, googleDetails, kakaoDetails, 
-    kakaoPlaceId, setKakaoPlaceId, handleFranchisePlaces, isLoading 
+    kakaoPlaceId, setKakaoPlaceId, handleFranchisePlaces, 
+    naverLoading, googleLoading, kakaoLoading
 }) {
     const [selectedPlatform, setSelectedPlatform] = useState("Naver");
 
@@ -36,19 +47,23 @@ export default function Home({
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
                         <div className="mt-8 lg:mt-12 lg:w-full">
-                            {isLoading ? (
-                                <div className="min-h-[300px] flex items-center justify-center">
-                                    <div className="font-customBold text-gray-500 text-md lg:text-xl w-full text-center animate-pulse">
-                                        🔄 리뷰를 불러오는 중입니다... 🏃‍♀️🏃‍♂️💨
-                                    </div>
-                                </div>
-                            ) : (
-                                <>
-                                    {submittedQuery !== "" && selectedPlatform === "Naver" && <ReviewNaver details={naverDetails} />}
-                                    {submittedQuery !== "" && selectedPlatform === "Google" && <ReviewGoogle details={googleDetails}/>}
-                                    {submittedQuery !== "" && selectedPlatform === "Kakao" && <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} />}
-                                </>
-                            )}
+                        {selectedPlatform === "Naver" && (
+                            naverLoading 
+                            ? loading("리뷰를") 
+                            : (submittedQuery !== "" && <ReviewNaver details={naverDetails} />)
+                        )}
+
+                        {selectedPlatform === "Google" && (
+                            googleLoading 
+                            ? loading("리뷰를") 
+                            : (submittedQuery !== "" && <ReviewGoogle details={googleDetails} />)
+                        )}
+
+                        {selectedPlatform === "Kakao" && (
+                            kakaoLoading 
+                            ? loading("리뷰를") 
+                            : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} />)
+                        )}
                         </div>
                     </div>
                 </div>
@@ -57,24 +72,22 @@ export default function Home({
                 <h1 className="font-customBold mb-8 text-md lg:text-2xl text-center lg:text-left break-words">
                     📷 사진 구경하기 ( ◜⤙◝ )🍴
                 </h1>
-                {isLoading ? (
-                    <div className="lg:mt-12 font-customBold text-gray-500 text-md lg:text-xl w-full text-center lg:text-left animate-pulse">
-                        🔄 사진을 불러오는 중입니다... 🤸‍♂️🤸‍♀️💨
-                    </div>
-                ) : (
-                    <>
-                        {submittedQuery !== "" && selectedPlatform === "Naver" && 
-                            <ImageNaver details={naverDetails} />
-                        }
-                        {
-                        submittedQuery !== "" && selectedPlatform === "Google" && 
-                            <ImageGoogle details={googleDetails} />
-                        }
-                        {
-                        submittedQuery !== "" && selectedPlatform === "Kakao" && 
-                            <ImageKakao details={kakaoDetails}/>
-                        }
-                    </>
+                {selectedPlatform === "Naver" && (
+                    naverLoading 
+                    ? loading("사진을") 
+                    : (submittedQuery !== "" && <ImageNaver details={naverDetails} />)
+                )}
+
+                {selectedPlatform === "Google" && (
+                    googleLoading 
+                    ? loading("사진을") 
+                    : (submittedQuery !== "" && <ImageGoogle details={googleDetails} />)
+                )}
+
+                {selectedPlatform === "Kakao" && (
+                    kakaoLoading 
+                    ? loading("사진을") 
+                    : (submittedQuery !== "" && <ImageKakao details={kakaoDetails} />)
                 )}
             </div>
         </>
