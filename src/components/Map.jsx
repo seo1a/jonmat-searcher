@@ -5,6 +5,7 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
     const markerRef = useRef(null);
     const [userLocation, setUserLocation] = useState(null);
     const [places, setPlaces] = useState([]); // 거리순 정렬을 위한 검색된 장소 상태
+    const infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
     useEffect(() => {
         // 카카오 지도 API 로드 확인
@@ -20,6 +21,7 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
         const initializeMap = () => {
             const { kakao } = window;
 
+            
             // 지도 초기 옵션 설정
             const mapOptions = {
                 center: new kakao.maps.LatLng(37.5666103, 126.9783882), // 초기 중심 좌표
@@ -129,6 +131,7 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
                 parseFloat(place.y),
                 parseFloat(place.x)
                 );
+
                 return { ...place, distance };
             })
             .sort((a, b) => a.distance - b.distance);
@@ -145,6 +148,7 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
         const { kakao } = window;
         const { map, markers } = markerRef.current;
 
+
         // 이전 마커 제거
         markers.forEach((marker) => marker.setMap(null));
         markerRef.current.markers = [];
@@ -160,61 +164,18 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
 
             markerRef.current.markers.push(marker);
 
-            const infowindow = new kakao.maps.InfoWindow({
-                content: `<div style="padding:5px;z-index:1;">${place.place_name}</div>`,
+            kakao.maps.event.addListener(marker, 'click', () => {
+                infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place_name + '</div>');
+                infowindow.open(map, marker);
             });
-
-            kakao.maps.event.addListener(marker, 'mouseover', () => infowindow.open(map, marker));
-            kakao.maps.event.addListener(marker, 'mouseout', () => infowindow.close());
-            
+         
         });
 
         // 지도 중심을 가장 가까운 장소로 설정
         const nearestPlace = sortedResults[0];
         const nearestPosition = new kakao.maps.LatLng(nearestPlace.y, nearestPlace.x);
         map.setCenter(nearestPosition);
-        
-        // 🔄 기존 단일 marker 제거하고 새로 찍기
-        if (markerRef.current.marker) {
-            markerRef.current.marker.setMap(null);
-        }
-
-        markerRef.current.marker = new kakao.maps.Marker({
-            position: nearestPosition,
-            map,
-        });
-    };
-
-    const handlePlaceClick = (place) => {
-        const { kakao } = window;
-        const { map, markers } = markerRef.current;
-
-        // 기존 마커 삭제
-        markers.forEach((marker) => marker.setMap(null));
-        markerRef.current.markers = [];
-
-        const { y, x, place_name } = place;
-        const newCenter = new kakao.maps.LatLng(y, x);
-
-        map.setCenter(newCenter);
-
-        const marker = new kakao.maps.Marker({
-            position: newCenter,
-            map,
-        });
-
-        markerRef.current.markers.push(marker);
-
-        const infowindow = new kakao.maps.InfoWindow({
-            content: `<div style="padding:5px;z-index:1;">${place_name}</div>`,
-        });
-        infowindow.open(map, marker);
-       
-        handleFranchisePlaces(place[0].place_name, place[0].id);
-
-        if (onPlaceClick) {
-            onPlaceClick(place);
-        }
+   
     };
 
     // 두 좌표 간의 거리 계산 함수

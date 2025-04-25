@@ -17,11 +17,11 @@ export default function ReviewNaver({ details }) {
                                     href={post.link} 
                                     target="_blank" 
                                     rel="noopener noreferrer" 
-                                    className="font-bold text-md lg:text-lg hover:underline"
+                                    className="font-bold text-base lg:text-lg hover:underline"
                                 >
                                     📍 {post.title.replace(/<b>/g, "").replace(/<\/b>/g, "")}
                                 </a>
-                                <p className="text-sm lg:text-md mt-1">
+                                <p className="text-sm lg:text-base mt-1 text-gray-900">
                                     {post.description.replace(/<b>/g, "").replace(/<\/b>/g, "")}
                                 </p>
                                 <p className="text-gray-500 text-xs mt-1">

@@ -11,7 +11,7 @@ import ImageKakao from "../components/ImageKakao";
 export function loading(data) {
     return(
         <div className="min-h-[300px] flex items-center justify-center">
-            <div className="font-customBold text-gray-500 text-md lg:text-xl w-full text-center animate-pulse">
+            <div className="font-customBold text-gray-500 text-sm lg:text-xl w-full text-center sm:mx-2 animate-pulse">
                 🔄 {data} 불러오는 중입니다... 🏃‍♀️🏃‍♂️💨
             </div>
         </div>
@@ -34,7 +34,7 @@ export default function Home({
             <div>
                 <div className="flex flex-col lg:flex-row mt-4 lg:mt-12 px-4 lg:px-52">
                     <div className="flex flex-col w-full lg:w-1/2 items-center lg:items-start">
-                        <h1 className="font-customBold mb-6 lg:mb-12 text-md lg:text-2xl text-center lg:text-left break-words items-center lg:items-start">
+                        <h1 className="font-customBold mb-6 lg:mb-12 text-base lg:text-2xl text-center lg:text-left break-words items-center lg:items-start">
                             #{submittedQuery}의 <span className="block lg:hidden"></span>리뷰를 보여 드릴게요! ฅ₍ˆ- ̫-ˆ₎‧˚🐾
                         </h1>
                         <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick}/>
@@ -47,29 +47,29 @@ export default function Home({
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
                         <div className="mt-8 lg:mt-12 lg:w-full">
-                        {selectedPlatform === "Naver" && (
-                            naverLoading 
-                            ? loading("리뷰를") 
-                            : (submittedQuery !== "" && <ReviewNaver details={naverDetails} />)
-                        )}
+                            {selectedPlatform === "Naver" && (
+                                naverLoading 
+                                ? loading("리뷰를") 
+                                : (submittedQuery !== "" && <ReviewNaver details={naverDetails} />)
+                            )}
 
-                        {selectedPlatform === "Google" && (
-                            googleLoading 
-                            ? loading("리뷰를") 
-                            : (submittedQuery !== "" && <ReviewGoogle details={googleDetails} />)
-                        )}
+                            {selectedPlatform === "Google" && (
+                                googleLoading 
+                                ? loading("리뷰를") 
+                                : (submittedQuery !== "" && <ReviewGoogle details={googleDetails} />)
+                            )}
 
-                        {selectedPlatform === "Kakao" && (
-                            kakaoLoading 
-                            ? loading("리뷰를") 
-                            : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} />)
-                        )}
+                            {selectedPlatform === "Kakao" && (
+                                kakaoLoading 
+                                ? loading("리뷰를") 
+                                : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} />)
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
             <div className="flex flex-col mt-20 mx-9 mb-24 lg:mx-52 lg:mb-40">
-                <h1 className="font-customBold mb-8 text-md lg:text-2xl text-center lg:text-left break-words">
+                <h1 className="font-customBold mb-8 text-base lg:text-2xl text-center lg:text-left break-words">
                     📷 사진 구경하기 ( ◜⤙◝ )🍴
                 </h1>
                 {selectedPlatform === "Naver" && (

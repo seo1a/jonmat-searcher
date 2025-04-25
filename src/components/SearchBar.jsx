@@ -28,7 +28,7 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     placeholder="식당을 검색해 보세요!😋"
                     value={inputQuery}
                     onChange={(e) => setInputQuery(e.target.value)}
-                    className="text-center w-full h-10 p-2 text-sm lg:text-md border lg:border-[1.5px] border-black rounded-xl bg-white"
+                    className="text-center w-full h-10 p-2 text-sm lg:text-base border lg:border-[1.5px] border-black rounded-xl bg-white"
                 />
                 <button 
                     type="submit" 
@@ -45,7 +45,12 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                 </button>   
 
                 {showDropdown && inputQuery.trim().length > 0 && (
-                    <ul className="absolute w-full left-0 top-full left-1/2 transform -translate-x-1/2 z-50 bg-white border border-black overflow-hidden bg-opacity-80">
+                    <ul className="absolute w-full left-0 top-full left-1/2 
+                    mt-1 lg:mt-2
+                    transform -translate-x-1/2 z-50 
+                    bg-gradient-to-b from-white via-purple-100 to-purple-200
+                    border border-black rounded-xl
+                    overflow-hidden bg-opacity-80">
                         {franchiseList.map((place) => (
                             <li 
                                 key={place.id} 
