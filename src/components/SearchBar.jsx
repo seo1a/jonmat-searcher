@@ -28,7 +28,7 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     placeholder="식당을 검색해 보세요!😋"
                     value={inputQuery}
                     onChange={(e) => setInputQuery(e.target.value)}
-                    className="text-center w-full h-10 lg:h-auto p-2 text-base border-[1.5px] border-black rounded-xl lg:text-md"
+                    className="text-center w-full h-10 lg:h-auto p-2 text-base border-[0.5px] lg:border border-black rounded-xl lg:text-md"
                 />
 
                 {showDropdown && inputQuery.trim().length > 0 && (

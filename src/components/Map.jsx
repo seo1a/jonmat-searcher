@@ -236,7 +236,10 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
 
     return (
         <div>
-            <div ref={mapRef} className="w-[320px] md:w-[600px] lg:w-[650px] h-[320px] md:h-[600px] lg:h-[650px]" />
+            <div ref={mapRef} 
+            className="w-[320px] md:w-[600px] lg:w-[650px] 
+            h-[320px] md:h-[600px] lg:h-[650px]
+            border border-black rounded-xl" />
             
         </div>
     );
