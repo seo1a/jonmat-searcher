@@ -35,7 +35,7 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
     return(
         <div>
             {reviews && (
-                <div className="max-w-3xl max-h-[600px] overflow-y-scroll pr-2">
+                <div className="max-w-3xl max-h-[600px] overflow-y-scroll">
                     <h3 className="font-customBold text-base lg:text-lg mt-2">카카오맵 리뷰 평점: ⭐️ {totalRating}</h3>
                     <a
                         href={`https://place.map.kakao.com/${kakaoPlaceId}`} 
@@ -49,10 +49,10 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
                     <ul className="mt-6 space-y-3">
                         {reviews.map((review, i) => (  
                             <li key={i} className="py-4 font-noto_sans border border-black rounded-xl
-                            bg-gradient-to-b from-white via-purple-100 to-purple-200">
-                                <p className="font-bold text-base lg:text-lg mx-3 lg:mx-5">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
-                                <p className="text-sm lg:text-base text-gray-900 mt-1 mx-3 lg:mx-5">{review.contents}</p>
-                                <p className="text-gray-500 text-xs mt-1 mx-3 lg:mx-5">
+                            bg-gradient-to-b from-white via-violet-100 to-violet-200">
+                                <p className="font-bold text-base lg:text-lg mx-3 lg:mx-6">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
+                                <p className="text-sm lg:text-base text-gray-900 mt-1 mx-3 lg:mx-6">{review.contents}</p>
+                                <p className="text-gray-500 text-xs mt-1 mx-3 lg:mx-6">
                                     🕒 {formatPostDate(review.date)}
                                 </p>
                             </li>
