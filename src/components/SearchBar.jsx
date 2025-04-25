@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, setSubmittedQuery, handleSearch, franchisePlaces }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const [franchiseList, setFranchiseList] = useState([]);
+    const wrapperRef = useRef(null);    // 드롭다운
 
     useEffect(() => {
         if(inputQuery.trim() === "" || inputQuery === submittedQuery){
@@ -19,9 +20,22 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
         }
     },[inputQuery, franchisePlaces])
 
+    useEffect(() => {
+        function handleClickOutside(event) {
+            if(wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+                setShowDropdown(false);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
     return(
         <form onSubmit={handleSearch} className="flex justify-center items-center w-full pt-10 lg:pt-16 pb-16 font-noto_sans">
-            <div className="relative w-2/3 lg:w-2/5">
+            <div ref={wrapperRef} className="relative w-2/3 lg:w-2/5">
                 <input
                     name="search"
                     type="search"
@@ -44,11 +58,11 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     </svg>
                 </button>   
 
+                {/*bg-gradient-to-b from-white via-purple-100 to-purple-200*/}
                 {showDropdown && inputQuery.trim().length > 0 && (
                     <ul className="absolute w-full left-0 top-full left-1/2 
                     mt-1 lg:mt-2
                     transform -translate-x-1/2 z-50 
-                    bg-gradient-to-b from-white via-purple-100 to-purple-200
                     border border-black rounded-xl
                     overflow-hidden bg-opacity-80">
                         {franchiseList.map((place) => (

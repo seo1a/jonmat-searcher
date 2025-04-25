@@ -46,7 +46,7 @@ export default function Home({
                             <Button platform="Google" setSelectedPlatform={setSelectedPlatform} className="bg-buttonGoogle"/>
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
-                        <div className="mt-8 lg:mt-12 lg:w-full">
+                        <div className="mt-8 lg:mt-12 w-full">
                             {selectedPlatform === "Naver" && (
                                 naverLoading 
                                 ? loading("리뷰를") 
