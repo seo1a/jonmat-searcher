@@ -35,7 +35,7 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
     return(
         <div>
             {reviews && (
-                <div className="max-w-3xl max-h-[700px] overflow-y-scroll">
+                <div className="max-w-3xl max-h-[700px] lg:max-h-[600px] overflow-y-scroll">
                     <h3 className="font-customBold text-base lg:text-lg mt-2">카카오맵 리뷰 평점: ⭐️ {totalRating}</h3>
                     <a
                         href={`https://place.map.kakao.com/${kakaoPlaceId}`} 

@@ -47,23 +47,25 @@ export default function Home({
                             <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao"/>
                         </div>
                         <div className="mt-8 lg:mt-12 w-full">
-                            {selectedPlatform === "Naver" && (
-                                naverLoading 
-                                ? loading("리뷰를") 
-                                : (submittedQuery !== "" && <ReviewNaver details={naverDetails} />)
-                            )}
+                            <div className="lg:mx-0 mx-[-12px] sm:mx-[-16px] md:mx-[-24px] lg:px-0">
+                                {selectedPlatform === "Naver" && (
+                                    naverLoading 
+                                    ? loading("리뷰를") 
+                                    : (submittedQuery !== "" && <ReviewNaver details={naverDetails} />)
+                                )}
 
-                            {selectedPlatform === "Google" && (
-                                googleLoading 
-                                ? loading("리뷰를") 
-                                : (submittedQuery !== "" && <ReviewGoogle details={googleDetails} />)
-                            )}
+                                {selectedPlatform === "Google" && (
+                                    googleLoading 
+                                    ? loading("리뷰를") 
+                                    : (submittedQuery !== "" && <ReviewGoogle details={googleDetails} />)
+                                )}
 
-                            {selectedPlatform === "Kakao" && (
-                                kakaoLoading 
-                                ? loading("리뷰를") 
-                                : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} />)
-                            )}
+                                {selectedPlatform === "Kakao" && (
+                                    kakaoLoading 
+                                    ? loading("리뷰를") 
+                                    : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} />)
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>

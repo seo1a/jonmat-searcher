@@ -9,7 +9,8 @@ export default function ReviewNaver({ details }) {
     return(
         <div>
             {details.blog.length > 0 && (
-                <div className="max-w-3xl max-h-[600px] overflow-y-scroll pr-2">
+                <div className="max-w-3xl max-h-[700px] lg:max-h-[600px] 
+                mx-4 lg:mx-0 overflow-y-scroll pr-2">
                     <ul className="space-y-3">
                         {details.blog.map((post, i) => (
                             <li key={i} className="font-noto_sans border-b py-4">
