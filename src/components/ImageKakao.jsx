@@ -14,7 +14,7 @@ export default function ImageKakao({ details }) {
                             <img 
                                 src={image.link} 
                                 alt={`photo-${i}`} 
-                                className="h-48 lg:h-60 object-contain border border-black rounded-xl" 
+                                className="h-48 lg:h-60 object-contain border border-black rounded-xl cursor-pointer" 
                                 loading="lazy"
                                 onClick={() => setPopupImage(image.link)}
                             />
