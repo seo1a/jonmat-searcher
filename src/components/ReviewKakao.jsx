@@ -50,9 +50,9 @@ export default function ReviewKakao({ details, kakaoPlaceId }) {
                         {reviews.map((review, i) => (  
                             <li key={i} className="py-4 font-noto_sans border border-black rounded-xl
                             bg-gradient-to-b from-white via-violet-100 to-violet-200">
-                                <p className="font-bold text-base lg:text-lg mx-4 lg:mx-6">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
-                                <p className="text-sm lg:text-base text-gray-900 mt-1 mx-4 lg:mx-6">{review.contents}</p>
-                                <p className="text-gray-500 text-xs mt-1 mx-4 lg:mx-6">
+                                <p className="font-bold text-base lg:text-lg px-4 lg:px-6">{review.name || '작성자 없음'} - ⭐ {review.rating ?? 'N/A'}</p>
+                                <p className="text-sm lg:text-base text-gray-900 mt-1 px-4 lg:px-6">{review.contents}</p>
+                                <p className="text-gray-500 text-xs mt-1 px-4 lg:px-6">
                                     🕒 {formatPostDate(review.date)}
                                 </p>
                             </li>

@@ -16,7 +16,7 @@ export default async function handler(req, res) {
                 },
             }
         );
-
+        
         const imageRes = await axios.get(
             `https://place.map.kakao.com/photolist/v/${placeId}`,
             {
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         const reviewResult = reviewRes.data;
         const imageResult = imageRes.data;
 
-        // ✅ 이미지 리스트 추출 (항상 시도)
+        // 이미지 리스트 추출 (항상 시도)
         let imageList = [];
         if (typeof imageResult === 'object' && imageResult.photoViewer?.list){
             imageList = imageResult.photoViewer.list
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
                 rating: review.point, 
             }));
         }
-
+        
         // 케이스 2. 후기 0개
         if (reviewList.length === 0) {
             return res.status(200).json({

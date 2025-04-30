@@ -11,7 +11,7 @@ import ImageKakao from "../components/ImageKakao";
 export function loading(data) {
     return(
         <div className="min-h-[300px] flex items-center justify-center">
-            <div className="font-customBold text-gray-500 text-sm lg:text-xl w-full text-center sm:mx-2 animate-pulse">
+            <div className="font-customBold text-gray-500 text-sm lg:text-xl lg:mt-48 w-full text-center sm:mx-2 animate-pulse">
                 🔄 {data} 불러오는 중입니다... 🏃‍♀️🏃‍♂️💨
             </div>
         </div>
@@ -63,7 +63,7 @@ export default function Home({
                                 {selectedPlatform === "Kakao" && (
                                     kakaoLoading 
                                     ? loading("리뷰를") 
-                                    : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} />)
+                                    : (submittedQuery !== "" && <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId}/>)
                                 )}
                             </div>
                         </div>

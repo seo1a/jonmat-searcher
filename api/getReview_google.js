@@ -44,7 +44,7 @@ export default async function handler(req, res) {
 
     const reviewResult = reviewRes.data.result;
 
-    const photoUrl = (reviewResult.photos || []).slice(0, 15).map((photo) => ({
+    const photoUrl = (reviewResult.photos || []).slice(0, 10).map((photo) => ({
       url: `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo.photo_reference}&key=${process.env.GOOGLE_MAPS_API_KEY}`,
     }));
 

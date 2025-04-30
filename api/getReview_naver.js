@@ -8,9 +8,8 @@ export default async function handler(req, res) {
     }
 
     try {
-        
         const blogRes = await axios.get(
-            `https://openapi.naver.com/v1/search/blog?query=${encodeURIComponent(query)}`,
+            `https://openapi.naver.com/v1/search/blog?query=${encodeURIComponent(query)}&display=20`,
             {
                 headers: {
                     "X-Naver-Client-Id": process.env.NAVER_CLIENT_ID,
@@ -20,7 +19,7 @@ export default async function handler(req, res) {
         );
 
         const imageRes = await axios.get(
-            `https://openapi.naver.com/v1/search/image?query=${encodeURIComponent(query)}`,
+            `https://openapi.naver.com/v1/search/image?query=${encodeURIComponent(query)}&display=30`,
             {
                 headers: {
                   "X-Naver-Client-Id": process.env.NAVER_CLIENT_ID,
