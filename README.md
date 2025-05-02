@@ -1,9 +1,9 @@
 # 🍕JMT searcher
 ![jonmat_searcher](https://github.com/user-attachments/assets/3e64e763-ee8c-4057-a5d0-e64a718aaff7)
-<img src="https://github.com/user-attachments/assets/402b866f-f718-4c75-a4ef-9a1cbba1b055" width="400" height="390"></img>
+<img src="https://github.com/user-attachments/assets/402b866f-f718-4c75-a4ef-9a1cbba1b055.png" width="400" height="390"></img>
 
 ![jonmat_searcher_mobile](https://github.com/user-attachments/assets/13942e36-5607-42c4-82f2-134f813b104a)
-<img src="https://github.com/user-attachments/assets/6568c320-d94d-4472-87ea-9a511e40e0c1" width="200" height="500"></img>
+<img src="https://github.com/user-attachments/assets/6568c320-d94d-4472-87ea-9a511e40e0c1.jpg" width="200" height="500"></img>
 
 맛집을 검색하면 리뷰, 사진, 지도 상 위치 정보를 확인할 수 있는 반응형 웹 애플리케이션입니다.
 네이버 블로그, 구글 플레이스, 카카오맵 총 3가지 플랫폼의 리뷰와 사진을 확인하고 비교할 수 있습니다.
