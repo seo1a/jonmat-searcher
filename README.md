@@ -1,8 +1,10 @@
 # 🍕JMT searcher
+![jonmat_searcher](https://github.com/user-attachments/assets/9541e634-9b6c-4613-81bd-bbe0afbb75bd)
+
 맛집을 검색하면 리뷰, 사진, 지도 상 위치 정보를 확인할 수 있는 반응형 웹 애플리케이션입니다.
 네이버 블로그, 구글 플레이스, 카카오맵 총 3가지 플랫폼의 리뷰와 사진을 확인하고 비교할 수 있습니다.
 <br>
-## 데모
+## 배포
 https://jonmat-searcher.vercel.app
 <br>
 <br>
