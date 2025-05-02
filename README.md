@@ -40,7 +40,6 @@ https://jonmat-searcher.vercel.app
   - 클라이언트에서 분리된 데이터 처리용 api
   - 네이버, 카카오맵, 구글 리뷰 데이터를 수집
 <br>
-<br>
 
 ### 배포 <br>
 
@@ -51,38 +50,38 @@ https://jonmat-searcher.vercel.app
 <br>
 
 ## 📁프로젝트 구조 <br>
-jonmat-searcher <br>
-├── api <br>
-│   ├── getReview_google.js <br>
-│   ├── getReview_kakao.js <br>
-│   └── getReview_naver.js <br>
-├── public <br>
-│   └── assets <br>
-├── src <br>
-│   ├── components <br>
-|   |    ├── UI <br>
-|   |    |   └── Buttons.jsx <br>
-|   |    ├── Header.jsx <br>
-|   |    ├── ImageGoogle.jsx <br>
-|   |    ├── ImageKakao.jsx <br>
-|   |    ├── ImageNaver.jsx <br>
-|   |    ├── Map.jsx <br>
-|   |    ├── ReviewGoogle.jsx <br>
-|   |    ├── ReviewKakao.jsx <br>
-|   |    ├── ReviewNaver.jsx <br>
-|   |    └── SearchBar.jsx <br>
-│   ├── pages <br>
-|   |   └── Home.jsx <br>
-│   ├── App.jsx <br>
-│   └── main.jsx <br>
-├── index.html <br>
-├── package-lock.json <br>
-├── package.json <br>
-├── postcss.config.json <br>
-├── README.md <br>
-├── tailwind.config.js <br>
-├── vite.config.js <br>
-└── README.md <br>
+jonmat-searcher 
+├── api 
+│   ├── getReview_google.js
+│   ├── getReview_kakao.js 
+│   └── getReview_naver.js 
+├── public
+│   └── assets
+├── src
+│   ├── components 
+|   |    ├── UI 
+|   |    |   └── Buttons.jsx 
+|   |    ├── Header.jsx
+|   |    ├── ImageGoogle.jsx
+|   |    ├── ImageKakao.jsx 
+|   |    ├── ImageNaver.jsx 
+|   |    ├── Map.jsx 
+|   |    ├── ReviewGoogle.jsx
+|   |    ├── ReviewKakao.jsx
+|   |    ├── ReviewNaver.jsx 
+|   |    └── SearchBar.jsx 
+│   ├── pages 
+|   |   └── Home.jsx
+│   ├── App.jsx 
+│   └── main.jsx 
+├── index.html 
+├── package-lock.json 
+├── package.json 
+├── postcss.config.json 
+├── README.md 
+├── tailwind.config.js 
+├── vite.config.js 
+└── README.md 
 <br>
 <br>
 <br>
