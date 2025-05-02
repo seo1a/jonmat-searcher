@@ -25,7 +25,7 @@ https://jonmat-searcher.vercel.app
 
 ## 🧩기술 스택 <br>
 
-### 프론트엔드 <br>
+### 1. 프론트엔드 <br>
 - **React**: UI 구성 및 상태 관리
 - **Vite**: 빠른 번들링을 위한 개발 환경
 - **JavaScript (ES6+)**: 기본 프로그래밍 언어
@@ -33,21 +33,20 @@ https://jonmat-searcher.vercel.app
 - **Axios**: 비동기 API 요청 처리
 <br>
 
-### Serverless API (백엔드 역할) <br>
+### 2. Serverless API (백엔드 역할) <br>
 - **Vercel Serverless Functions** (`/api`)  
   - 클라이언트에서 분리된 데이터 처리용 api
   - 네이버, 카카오맵, 구글 리뷰 데이터를 수집
 <br>
 
-### 배포 <br>
-
+### 3. 배포 <br>
 - **Vercel**: 프론트엔드 및 서버리스 백엔드 통합 배포
 <br>
 <br>
 <br>
 
 ## 📁프로젝트 구조 <br>
-<img src="./project_directory.JPG", height="100x", width="100px">
+![project_directory](https://github.com/user-attachments/assets/42dde5d5-d64e-4a79-aadd-f9b53a5340ab)
 <br>
 <br>
 <br>
