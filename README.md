@@ -7,7 +7,6 @@ https://jonmat-searcher.vercel.app
 <br>
 <br>
 <br>
-<br>
 
 ## 📚주요 기능
 
@@ -20,7 +19,6 @@ https://jonmat-searcher.vercel.app
 - **반응형 UI**: 모바일, 데스크탑에 최적화 된 사용자 경험을 제공합니다. (태블릿 환경 제외)
 
 - **서버리스 API 연동**: Vercel Serverless Functions를 통해 각 플랫폼의 리뷰, 사진 데이터를 처리합니다.
-<br>
 <br>
 <br>
 <br>
@@ -47,42 +45,9 @@ https://jonmat-searcher.vercel.app
 <br>
 <br>
 <br>
-<br>
 
 ## 📁프로젝트 구조 <br>
-jonmat-searcher 
-├── api 
-│   ├── getReview_google.js
-│   ├── getReview_kakao.js 
-│   └── getReview_naver.js 
-├── public
-│   └── assets
-├── src
-│   ├── components 
-|   |    ├── UI 
-|   |    |   └── Buttons.jsx 
-|   |    ├── Header.jsx
-|   |    ├── ImageGoogle.jsx
-|   |    ├── ImageKakao.jsx 
-|   |    ├── ImageNaver.jsx 
-|   |    ├── Map.jsx 
-|   |    ├── ReviewGoogle.jsx
-|   |    ├── ReviewKakao.jsx
-|   |    ├── ReviewNaver.jsx 
-|   |    └── SearchBar.jsx 
-│   ├── pages 
-|   |   └── Home.jsx
-│   ├── App.jsx 
-│   └── main.jsx 
-├── index.html 
-├── package-lock.json 
-├── package.json 
-├── postcss.config.json 
-├── README.md 
-├── tailwind.config.js 
-├── vite.config.js 
-└── README.md 
-<br>
+<img src="./project_directory.JPG", height="100x", width="100px">
 <br>
 <br>
 <br>
@@ -102,7 +67,6 @@ vercel dev
 <br>
 <br>
 <br>
-<br>
 
 ## ✏환경 변수 설정 (.env) <br>
 
@@ -116,7 +80,6 @@ VITE_KAKAO_MAP_API_KEY=YOUR_KAKAO_API_KEY
 
 `YOUR_NAVER_API_ID` 부분에 본인의 실제 키를 입력해주세요!
 ```
-<br>
 <br>
 <br>
 <br>
