@@ -1,12 +1,13 @@
 # 🍕JMT searcher
 맛집을 검색하면 리뷰, 사진, 지도 상 위치 정보를 확인할 수 있는 반응형 웹 애플리케이션입니다.
 네이버 블로그, 구글 플레이스, 카카오맵 총 3가지 플랫폼의 리뷰와 사진을 확인하고 비교할 수 있습니다.
-
+<br>
 ## 데모
 https://jonmat-searcher.vercel.app
-
-
-
+<br>
+<br>
+<br>
+<br>
 
 ## 📚주요 기능
 
@@ -19,72 +20,75 @@ https://jonmat-searcher.vercel.app
 - **반응형 UI**: 모바일, 데스크탑에 최적화 된 사용자 경험을 제공합니다. (태블릿 환경 제외)
 
 - **서버리스 API 연동**: Vercel Serverless Functions를 통해 각 플랫폼의 리뷰, 사진 데이터를 처리합니다.
+<br>
+<br>
+<br>
+<br>
 
+## 🧩기술 스택 <br>
 
-
-
-## 🧩기술 스택
-
-### 프론트엔드
-
+### 프론트엔드 <br>
 - **React**: UI 구성 및 상태 관리
 - **Vite**: 빠른 번들링을 위한 개발 환경
 - **JavaScript (ES6+)**: 기본 프로그래밍 언어
 - **Tailwind CSS**: 유틸리티 기반의 스타일링 프레임워크
 - **Axios**: 비동기 API 요청 처리
+<br>
 
-### Serverless API (백엔드 역할)
-
+### Serverless API (백엔드 역할) <br>
 - **Vercel Serverless Functions** (`/api`)  
   - 클라이언트에서 분리된 데이터 처리용 api
   - 네이버, 카카오맵, 구글 리뷰 데이터를 수집
+<br>
+<br>
 
-
-### 배포
+### 배포 <br>
 
 - **Vercel**: 프론트엔드 및 서버리스 백엔드 통합 배포
+<br>
+<br>
+<br>
+<br>
 
+## 📁프로젝트 구조 <br>
+jonmat-searcher <br>
+├── api <br>
+│   ├── getReview_google.js <br>
+│   ├── getReview_kakao.js <br>
+│   └── getReview_naver.js <br>
+├── public <br>
+│   └── assets <br>
+├── src <br>
+│   ├── components <br>
+|   |    ├── UI <br>
+|   |    |   └── Buttons.jsx <br>
+|   |    ├── Header.jsx <br>
+|   |    ├── ImageGoogle.jsx <br>
+|   |    ├── ImageKakao.jsx <br>
+|   |    ├── ImageNaver.jsx <br>
+|   |    ├── Map.jsx <br>
+|   |    ├── ReviewGoogle.jsx <br>
+|   |    ├── ReviewKakao.jsx <br>
+|   |    ├── ReviewNaver.jsx <br>
+|   |    └── SearchBar.jsx <br>
+│   ├── pages <br>
+|   |   └── Home.jsx <br>
+│   ├── App.jsx <br>
+│   └── main.jsx <br>
+├── index.html <br>
+├── package-lock.json <br>
+├── package.json <br>
+├── postcss.config.json <br>
+├── README.md <br>
+├── tailwind.config.js <br>
+├── vite.config.js <br>
+└── README.md <br>
+<br>
+<br>
+<br>
+<br>
 
-
-
-## 📁프로젝트 구조
-jonmat-searcher
-├── api
-│   ├── getReview_google.js
-│   ├── getReview_kakao.js
-│   └── getReview_naver.js
-├── public
-│   └── assets
-├── src
-│   ├── components
-|   |    ├── UI
-|   |    |   └── Buttons.jsx
-|   |    ├── Header.jsx
-|   |    ├── ImageGoogle.jsx
-|   |    ├── ImageKakao.jsx
-|   |    ├── ImageNaver.jsx
-|   |    ├── Map.jsx
-|   |    ├── ReviewGoogle.jsx
-|   |    ├── ReviewKakao.jsx
-|   |    ├── ReviewNaver.jsx
-|   |    └── SearchBar.jsx
-│   ├── pages
-|   |   └── Home.jsx
-│   ├── App.jsx
-│   └── main.jsx
-├── index.html
-├── package-lock.json
-├── package.json
-├── postcss.config.json
-├── README.md
-├── tailwind.config.js
-├── vite.config.js
-└── README.md
-
-
-
-
-## 🛠설치 및 실행 방법
+## 🛠설치 및 실행 방법 <br>
 ```bash
 # 1. 리포지토리 클론
 git clone https://github.com/seo1a/jonmat-searcher.git
@@ -96,13 +100,14 @@ npm install
 # 3. 개발 서버 실행
 vercel dev
 ```
+<br>
+<br>
+<br>
+<br>
 
+## ✏환경 변수 설정 (.env) <br>
 
-
-
-## ✏환경 변수 설정 (.env)
-
-다음과 같이 `.env` 파일을 루트 디렉토리에 생성하고 API 키를 입력해주세요:
+다음과 같이 `.env` 파일을 루트 디렉토리에 생성하고 API 키를 입력해주세요: <br>
 
 ```
 NAVER_CLIENT_ID=YOUR_NAVER_API_ID
@@ -112,8 +117,9 @@ VITE_KAKAO_MAP_API_KEY=YOUR_KAKAO_API_KEY
 
 `YOUR_NAVER_API_ID` 부분에 본인의 실제 키를 입력해주세요!
 ```
+<br>
+<br>
+<br>
+<br>
 
-
-
-
-## 트러블 슈팅
+## 트러블 슈팅 <br>
