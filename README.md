@@ -3,7 +3,9 @@
 <br>
 <details>
   <summary>📱모바일 UI 확인하기</summary> 
+  
   ![jonmat_searcher_mobile](https://github.com/user-attachments/assets/13942e36-5607-42c4-82f2-134f813b104a)
+  
 </details>
 <br>
 
