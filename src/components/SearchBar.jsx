@@ -58,7 +58,6 @@ export default function SearchBar({ inputQuery, setInputQuery, submittedQuery, s
                     </svg>
                 </button>   
 
-                {/*bg-gradient-to-b from-white via-purple-100 to-purple-200*/}
                 {showDropdown && inputQuery.trim().length > 0 && (
                     <ul className="absolute w-full left-0 top-full left-1/2 
                     mt-1 lg:mt-2

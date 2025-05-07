@@ -196,12 +196,11 @@ export default function Map({ inputQuery, submittedQuery, setKakaoPlaceId, handl
     const deg2rad = (deg) => deg * (Math.PI / 180);
 
     return (
-        <div>
+        <div className="w-full flex justify-center">
             <div ref={mapRef} 
-            className="w-[320px] md:w-[600px] lg:w-[650px] 
-            h-[320px] md:h-[600px] lg:h-[650px]
-            border border-black rounded-xl" />
-            
+            className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] xl:max-w-[650px]
+            h-[280px] sm:h-[320px] md:h-[450px] lg:h-[550px] xl:h-[650px]
+            border border-black rounded-xl" />      
         </div>
     );
 }
