@@ -4,6 +4,10 @@ import { useDebounce } from "use-debounce";
 import Header from './components/Header'
 import SearchBar from "./components/SearchBar";
 import Home from "./pages/Home";
+import ReactGA from "react-ga4";
+import usePageTracking from "./hooks/usePageTracking";
+
+ReactGA.initialize(import.meta.env.VITE_GA_ID);
 
 export default function App() {
   const [inputQuery, setInputQuery] = useState(""); // 실시간 검색어 입력값
@@ -17,6 +21,8 @@ export default function App() {
   const [naverLoading, setNaverLoading] = useState(false);  // 데이터 로딩 상태 표시
   const [googleLoading, setGoogleLoading] = useState(false);
   const [kakaoLoading, setKakaoLoading] = useState(false);
+
+  usePageTracking();  // GA 페이지 이동 감지
 
   useEffect(() => {
     const fetchSearchResults = async () => {
@@ -70,7 +76,7 @@ export default function App() {
   const handleFranchisePlaces = (places) => {
     setFranchisePlaces(places);
   };
-
+  console.log(import.meta.env.VITE_GA_ID);
   return (
     <>
       <Header setInputQuery={setInputQuery} setSubmittedQuery={setSubmittedQuery} />
