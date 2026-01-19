@@ -33,23 +33,50 @@ export default function Home({
         <>
             <div className="flex flex-col lg:flex-row mt-4 lg:mt-12 px-4 lg:px-52">
                 <div className="flex flex-col w-full lg:w-1/2 items-center lg:items-start">
+                    <div className="w-full">
                     <h1 className="font-customBold mb-6 lg:mb-12 text-base lg:text-2xl text-center lg:text-left break-words">
                         #{submittedQuery}의 리뷰를 보여 드릴게요! ฅ₍ˆ- ̫-ˆ₎‧˚🐾
                     </h1>
-                    <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick} />
+                        <Map inputQuery={inputQuery} submittedQuery={submittedQuery} setKakaoPlaceId={setKakaoPlaceId} handleFranchisePlaces={handleFranchisePlaces} onPlaceClick={handlePlaceClick} />
+                    </div>
                 </div>
     
                 <div className="flex flex-col ml-9 mr-9 lg:ml-20 lg:mr-0 items-center md:items-start lg:w-full lg:max-w-[720px]">
-                    <div className="flex space-x-4 lg:space-x-8">
-                        <Button platform="Naver" setSelectedPlatform={setSelectedPlatform} className="bg-buttonNaver" />
-                        <Button platform="Google" setSelectedPlatform={setSelectedPlatform} className="bg-buttonGoogle" />
-                        <Button platform="Kakao" setSelectedPlatform={setSelectedPlatform} className="bg-buttonKakao" />
+                    <div className="flex space-x-3 lg:space-x-8">
+                        <Button 
+                            platform="Naver" 
+                            setSelectedPlatform={setSelectedPlatform} 
+                            className="
+                                bg-buttonNaver 
+                                py-2 px-2 sm:py-2.5 md:px-6 md:py-3
+                                w-[25vw] md:min-w-[130px]  
+                            " 
+                        />
+                        <Button 
+                            platform="Google" 
+                            setSelectedPlatform={setSelectedPlatform} 
+                            className="
+                                bg-buttonGoogle 
+                                py-2 px-2 sm:py-2.5 md:px-6 md:py-3
+                                 w-[25vw] md:min-w-[130px]
+                            " 
+                        />
+                        <Button 
+                            platform="Kakao" 
+                            setSelectedPlatform={setSelectedPlatform} 
+                            className="
+                                bg-buttonKakao 
+                                py-2 px-2 sm:py-2.5 md:px-6 md:py-3
+                                 w-[25vw] md:min-w-[50px]
+                            " 
+                        />
                     </div>
+
                     <div className="mt-8 lg:mt-12 w-full">
                         <div className="mx-[-12px] sm:mx-[-16px] md:mx-[-24px] lg:mx-0">
-                            {selectedPlatform === "Naver" && (naverLoading ? loading("리뷰를") : <ReviewNaver details={naverDetails} />)}
-                            {selectedPlatform === "Google" && (googleLoading ? loading("리뷰를") : <ReviewGoogle details={googleDetails} />)}
-                            {selectedPlatform === "Kakao" && (kakaoLoading ? loading("리뷰를") : <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} submittedQuery={submittedQuery} />)}
+                        {selectedPlatform === "Naver" && (naverLoading ? loading("리뷰를") : <ReviewNaver details={naverDetails} />)}
+                        {selectedPlatform === "Google" && (googleLoading ? loading("리뷰를") : <ReviewGoogle details={googleDetails} />)}
+                        {selectedPlatform === "Kakao" && (kakaoLoading ? loading("리뷰를") : <ReviewKakao details={kakaoDetails} kakaoPlaceId={kakaoPlaceId} submittedQuery={submittedQuery} />)}
                         </div>
                     </div>
                 </div>
